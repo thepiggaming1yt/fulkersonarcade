@@ -31,6 +31,7 @@
 
     h3, h2, h1, p {
       text-align: center;
+      font-size: 24px; 
     }
 
     button {
@@ -55,10 +56,10 @@
     }
 
     .game-buttons button {
-      width: 150px;
-      height: 150px;
+      width: 300px;
+      height: 300px;
       padding: 10px;
-      font-size: 14px;
+      font-size: 20px;
       border-radius: 10px;
       background-color: #4CAF5075;
       color: white;
@@ -90,52 +91,24 @@
     <p>WILL BE DELETED IF ITS MADE AN ISSUE</p>
     <br><br><br>
     <div class="game-buttons">
-      <button onclick="openGame('2048/2048.html')"> <img src="img/soesbee" class="rounded-image">Play 2048!</button>
-      <button onclick="openGame('baloonstd/baloonstd.html')"> <img src="img/2.webp" class="rounded-image">Play Baloons TD!</button>
-      <button onclick="openGame('bitlife/bitlife.html')"> <img src="img/3.webp" class="rounded-image">Play Bitlife!</button>
-      <button onclick="openGame('blockblast/blockblast.html')"> <img src="img/4.webp" class="rounded-image">Play Block Blast!</button>
-      <button onclick="openGame('ClusterRush/clusterrush.html')"> <img src="img/soesbee" class="rounded-image">Play Cluster Rush!</button>
-      <button onclick="openGame('CookieClicker/cookieclicker.html')"> <img src="img/6.webp" class="rounded-image">Play Cookie Clicker!</button>
-      <button onclick="openGame('Coreball/coreball.html')"> <img src="img/7.webp" class="rounded-image">Play Coreball!</button>
-      <button onclick="openGame('DriveMad/drivemad.html')"> <img src="img/8.webp" class="rounded-image">Play Drive Mad!</button>
-      <button onclick="openGame('fnf/fnf.html')"> <img src="img/9.webp" class="rounded-image">Play Friday Night Funkin!</button>
-      <button onclick="openGame('Hextris/hextris.html')"> <img src="img/10.webp" class="rounded-image">Play Hextris!</button>
-      <button onclick="openGame('Mario/Mario.html')"> <img src="img/soesbee" class="rounded-image">Play Mario!</button>
-      <button onclick="openGame('paperio2/paper.html')"> <img src="img/12.webp" class="rounded-image">Play Paper.io 2!</button>
-      <button onclick="openGame('polytrack.3-main/polytrack.html')"> <img src="img/13.webp" class="rounded-image">Play PolyTrack!</button>
-      <button onclick="openGame('Pong/pong.html')"> <img src="img/14.webp" class="rounded-image">Play Pong!</button>
-      <button onclick="openGame('pvz/pvz.html')"> <img src="img/15.webp" class="rounded-image">Play PVZ!</button>
-      <button onclick="openGame('Retrobowl/retro.html')"> <img src="img/17.webp" class="rounded-image">Play Retrobowl!</button>
-      <button onclick="openGame('sandboxgame/sandbox.html')"> <img src="img/soesbee" class="rounded-image">Play Sandbox Game!</button>
-      <button onclick="openGame('slope/slope.html')"> <img src="img/19.webp" class="rounded-image">Play Slope!</button>
-      <button onclick="openGame('Snowrider/snowrider.html')"> <img src="img/20.webp" class="rounded-image">Play Snow Rider 3D!</button>
-      <button onclick="openGame('SubwaySurfers/subwaysurfers.html')"> <img src="img/21.webp" class="rounded-image">Play Subway Surfers!</button>
-      <button onclick="openGame('Tetris/tetrisgame.html')"> <img src="img/22.webp" class="rounded-image">Play Tetris!</button>
-      <button onclick="openGame('TimeShooter/timeshooter.html')"> <img src="img/23.webp" class="rounded-image">Play Time Shooter!</button>
-      <button onclick="openGame('Tombofthemask/tomb.html')"> <img src="img/24.webp" class="rounded-image">Play Tomb Of The Mask!</button>
-      <button onclick="openGame('WorldsHardestGame/whg.html')"> <img src="img/25.webp" class="rounded-image">Play Worlds Hardest Game!</button>
-      <button onclick="openGame('windowkill/windowkill.html')"> <img src="img/soesbee" class="rounded-image">Play Windowkill!</button>
-      <button onclick="openGame('yohoho/yohoho.html')"> <img src="img/soesbee" class="rounded-image">Play Yohoho.io!</button>
+      <button onclick="openGame('2048/2048.html')">
+        <img src="img/soesbee" class="rounded-image">Play 2048!</button>
+
+      
     </div>
   </div>
   <script>
     document.body.style.zoom="70%"
-    function openGame(url){
-        var win = window.open()
-        if (url) {
-            var iframe = document.createElement("iframe")
-            iframe.style.border = "none";
-            iframe.style.width = "100%";
-            iframe.style.height = "100%"
-            iframe.style.margin = "0";
-            iframe.src = url;
-            win.document.body.appendChild(iframe);
-        }
-    }  
+function openGame(url) {
+    if (url) {
+        window.open(url, "_blank");
+    }
+}
+
   </script>
   <br><br><br><br>
     <footer>
-    soesbee has gotta be the best
+    Make sure you do your work 
   </footer>
 </body>
 </html>
