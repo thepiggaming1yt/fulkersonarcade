@@ -2,31 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Image Memory Match</title>
+    <title>6-Image Memory Game</title>
     <style>
-        :root { --bg: #1a1a1a; --card-back: #444; }
-        body { background: var(--bg); color: white; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; }
-        .grid { display: grid; grid-template-columns: repeat(4, 100px); gap: 10px; margin-top: 20px; }
-        .card { width: 100px; height: 100px; background: var(--card-back); cursor: pointer; border-radius: 8px; position: relative; overflow: hidden; }
-        .card img { width: 100%; height: 100%; object-fit: cover; display: none; }
+        :root { --bg: #121212; --card-back: #333; --border: #444; }
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        
+        /* Grid set to 4 columns and 3 rows for 12 cards total */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 100px); 
+            grid-template-rows: repeat(3, 100px); 
+            gap: 15px; 
+            margin-top: 20px; 
+        }
+
+        .card { 
+            width: 100px; 
+            height: 100px; 
+            background: var(--card-back); 
+            border: 2px solid var(--border);
+            cursor: pointer; 
+            border-radius: 12px; 
+            position: relative; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .card:hover { transform: scale(1.05); }
+
+        /* Images are hidden by default and scaled to fit the card */
+        .card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 10px;
+            display: none; 
+        }
+
         .card.flipped img { display: block; }
-        .card.matched { opacity: 0.5; cursor: default; }
-        button { margin-top: 20px; padding: 10px; cursor: pointer; }
+        .card.flipped { background: white; cursor: default; }
+        .card.matched { opacity: 0.4; pointer-events: none; }
+
+        button { margin-top: 30px; padding: 12px 24px; cursor: pointer; border-radius: 8px; border: none; background: #007bff; color: white; font-weight: bold; }
+        button:hover { background: #0056b3; }
     </style>
 </head>
 <body>
 
     <h1>Memory Match</h1>
+    <p>Find the 6 pairs!</p>
+    
     <div class="grid" id="game-board"></div>
-    <button onclick="resetGame()">Restart</button>
+    
+    <button onclick="resetGame()">Restart Game</button>
 
     <script>
-        // Update these strings with the actual paths to your images in your GitHub repo
+        // Use relative paths for GitHub Pages (no leading slash)
         const imagePaths = [
-            'img/img1.png', 'img/img2.png', 'img/img3.png', 'img/img4.png',
-            'img/img5.png', 'img/img6.png', 'img/img7.png', 'img/img8.png'
+            'Games/fulkersonmemorymatch/fulkerson.png', 'Games/fulkersonmemorymatch/fulkerson2.png',
+            'Games/fulkersonmemorymatch/fulkerson3.png',  'Games/fulkersonmemorymatch/fulkerson4.png', 
+            'Games/fulkersonmemorymatch/soesbee.png', 'Games/fulkersonmemorymatch/warden.png'
         ];
         
+        // Duplicate the 6 images to make 12 cards
         let cards = [...imagePaths, ...imagePaths];
         let flippedCards = [];
         let matchedCount = 0;
@@ -34,6 +74,7 @@
 
         function createBoard() {
             board.innerHTML = '';
+            // Shuffle cards
             cards.sort(() => Math.random() - 0.5).forEach((path) => {
                 const card = document.createElement('div');
                 card.classList.add('card');
@@ -52,7 +93,7 @@
             if (flippedCards.length < 2 && !this.classList.contains('flipped')) {
                 this.classList.add('flipped');
                 flippedCards.push(this);
-                if (flippedCards.length === 2) setTimeout(checkMatch, 700);
+                if (flippedCards.length === 2) setTimeout(checkMatch, 600);
             }
         }
 
@@ -62,7 +103,7 @@
                 c1.classList.add('matched');
                 c2.classList.add('matched');
                 matchedCount += 2;
-                if (matchedCount === cards.length) alert("Winner!");
+                if (matchedCount === cards.length) setTimeout(() => alert("You matched them all!"), 200);
             } else {
                 c1.classList.remove('flipped');
                 c2.classList.remove('flipped');
@@ -70,7 +111,12 @@
             flippedCards = [];
         }
 
-        function resetGame() { matchedCount = 0; flippedCards = []; createBoard(); }
+        function resetGame() {
+            matchedCount = 0;
+            flippedCards = [];
+            createBoard();
+        }
+
         createBoard();
     </script>
 </body>
