@@ -59,12 +59,16 @@
     <button onclick="resetGame()">Restart Game</button>
 
     <script>
-        // Use relative paths for GitHub Pages (no leading slash)
-        const imagePaths = [
-            'Games/fulkersonmemorymatch/fulkerson.png', 'Games/fulkersonmemorymatch/fulkerson2.png',
-            'Games/fulkersonmemorymatch/fulkerson3.png',  'Games/fulkersonmemorymatch/fulkerson4.png', 
-            'Games/fulkersonmemorymatch/soesbee.png', 'Games/fulkersonmemorymatch/warden.png'
-        ];
+        // Use relative paths for GitHub Pages (no leading // Updated paths with explicit relative notation
+const imagePaths = [
+    './Games/fulkersonmemorymatch/fulkerson.png', 
+    './Games/fulkersonmemorymatch/fulkerson2.png',
+    './Games/fulkersonmemorymatch/fulkerson3.png',  
+    './Games/fulkersonmemorymatch/fulkerson4.png', 
+    './Games/fulkersonmemorymatch/soesbee.png', 
+    './Games/fulkersonmemorymatch/warden.png'
+];
+
         
         // Duplicate the 6 images to make 12 cards
         let cards = [...imagePaths, ...imagePaths];
