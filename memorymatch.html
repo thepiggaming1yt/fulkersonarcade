@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Memory Match</title>
+    <style>
+        :root { --bg: #1a1a1a; --card-back: #444; }
+        body { background: var(--bg); color: white; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; }
+        .grid { display: grid; grid-template-columns: repeat(4, 100px); gap: 10px; margin-top: 20px; }
+        .card { width: 100px; height: 100px; background: var(--card-back); cursor: pointer; border-radius: 8px; position: relative; overflow: hidden; }
+        .card img { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .card.flipped img { display: block; }
+        .card.matched { opacity: 0.5; cursor: default; }
+        button { margin-top: 20px; padding: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>Memory Match</h1>
+    <div class="grid" id="game-board"></div>
+    <button onclick="resetGame()">Restart</button>
+
+    <script>
+        // Update these strings with the actual paths to your images in your GitHub repo
+        const imagePaths = [
+            'img/img1.png', 'img/img2.png', 'img/img3.png', 'img/img4.png',
+            'img/img5.png', 'img/img6.png', 'img/img7.png', 'img/img8.png'
+        ];
+        
+        let cards = [...imagePaths, ...imagePaths];
+        let flippedCards = [];
+        let matchedCount = 0;
+        const board = document.getElementById('game-board');
+
+        function createBoard() {
+            board.innerHTML = '';
+            cards.sort(() => Math.random() - 0.5).forEach((path) => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.dataset.path = path;
+                
+                const img = document.createElement('img');
+                img.src = path;
+                card.appendChild(img);
+                
+                card.addEventListener('click', flipCard);
+                board.appendChild(card);
+            });
+        }
+
+        function flipCard() {
+            if (flippedCards.length < 2 && !this.classList.contains('flipped')) {
+                this.classList.add('flipped');
+                flippedCards.push(this);
+                if (flippedCards.length === 2) setTimeout(checkMatch, 700);
+            }
+        }
+
+        function checkMatch() {
+            const [c1, c2] = flippedCards;
+            if (c1.dataset.path === c2.dataset.path) {
+                c1.classList.add('matched');
+                c2.classList.add('matched');
+                matchedCount += 2;
+                if (matchedCount === cards.length) alert("Winner!");
+            } else {
+                c1.classList.remove('flipped');
+                c2.classList.remove('flipped');
+            }
+            flippedCards = [];
+        }
+
+        function resetGame() { matchedCount = 0; flippedCards = []; createBoard(); }
+        createBoard();
+    </script>
+</body>
+</html>
